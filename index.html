@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ccf930ce99.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="MainController.js" async></script>
+      <title>Document</title>
+</head>
+<body ng-app="myApp">
+    <div class="head-ctn">
+        <div>
+            <nav id="navbar" class="navbar">
+                <ul type="none">
+                    <li><a class="icon" href="javascript:void(0);" onclick="navFunction"><i class="fas fa-bars"></i></a></li>
+                    <li><a class="homenav" href="">Home</a></li>
+                    <li><a href="cart.html" target="_blank">Cart</a></li>
+                    <li><a href="">Sign In</a></li>
+                    <li onclick="myFunction()"><a href=""><i class="fa fa-solid fa-moon"></i></button></a></li>
+                    <li><div class="search-ctn">
+                        <input type="search" class="searchbar" name="productsearch" ng-model="productsearch">
+                        <button class="searchbutton" name="searchbar"><a href="#card-ctn" class="searchbarlink"><i class="fas fa-search"></i></a></button>
+                    </div>
+                      </li>
+                </ul>
+            </nav>
+        </div>
+        <header>
+            <h1>Mike's Spectacles</h1>
+        </header>
+    </div>
+
+ <div class="model-ctn">
+    <div class="model-img-ctn">
+        <img class="model-img" src="https://i.pinimg.com/originals/7b/e4/50/7be4508a721a8cba16032dc352c2e5a2.jpg" alt="">
+      <span class="image_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus illum repellat et eaque dolore inventore labore hic quisquam debitis delectus harum quaerat unde, velit cumque sed dolorem quam culpa fugit?</span>
+    </div>
+    <div class="model-img-ctn">
+        <img class="model-img" src="https://c4.wallpaperflare.com/wallpaper/731/600/48/women-with-glasses-glasses-face-women-wallpaper-preview.jpg" alt="">
+      <span class="image_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus illum repellat et eaque dolore inventore labore hic quisquam debitis delectus harum quaerat unde, velit cumque sed dolorem quam culpa fugit?</span>
+    </div>
+</div>
+ 
+    <div class="card-ctn" id="card-ctn" ng-controller="MainController">
+      <div class="card" ng-repeat="product in products | filter: productsearch">
+          <div class="image">
+              <img class ="card-img" ng-src="{{ product.cover }}"> 
+          </div>
+          <div class="card_content">
+          <p class="title">{{ product.brand }}</p> 
+          <p>{{ product.lens }}</p>
+          <p>{{ product.frame }}</p>
+          <p class="price">{{ product.price | currency }}</p> 
+                        <br>
+          <button class="selectbtn" ng-click="add_cart(product)" onclick="addFunction()">Select</button>
+          <button class="buybtn">Buy</button>
+          </div>
+      </div>
+
+      <!-- cart experiment start -->
+
+        
+        
+                
+            <div ng-show="carts !==0">
+                <span>Cart</span>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat = "cart in carts" ng-init = "setTotals(cart)">
+                            <td>{{cart.brand}}</td>
+                            <td>${{cart.price}}</td>
+                            <td><button type = "button" ng-click = "remove_cart(cart)"><span>X</span></button></td>
+                        </tr>
+                        <tr>
+                            <td align = "right">Total</td>
+                            <td>${{total}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+    
+    </div>
+    
+    
+    <!-- cart experiment end -->
+    
+
+</div>
+<div class="pagination">
+    <a href="#">&laquo;</a>
+    <a href="#card-ctn">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">&raquo;</a>
+  </div>
+
+  <footer>
+    <div class= "aboutus">
+    <h2>About us</h2>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et repellendus eius a quod voluptate quia quos. Illo autem a ullam aut consectetur qui nostrum consequatur odio quidem eius, aliquid fuga?</p>
+      </div>
+    <div class="contactus">
+    <h2>Contact us</h2>
+    <p>000-000-000</p>
+    <p>mikesbikesparts@smtn.com</p>
+    </div>
+    <div>
+        <h2>More from the Developer</h2>
+        <ul type="none" class="footer_list">
+            <li><i class="fab fa-facebook-square"></i><a href="#">Facebook</a></li>
+            <li><i class="fab fa-instagram"></i><a href="#">Instagram</a></li>
+            <li><i class="fab fa-github-square"></i><a href="https://github.com/MikesGit138" target="_blank">Github</a></li>
+        </ul>
+    </div>
+  </footer>
+  <script>
+      function myFunction() {
+        var element = document.body;
+        element.classList.toggle("dark-mode");
+ };
+ </script>
+</body>
+</html>
